@@ -1,2 +1,2 @@
 # react-todo
-Code the Dream - React (Emu) Course
+Code the Dream (Emu) - React Course
