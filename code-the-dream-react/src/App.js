@@ -51,6 +51,7 @@ let List = function App() {
   );
 }
 
+// ARROW function expression format
 let List = () => {
   return (
     <div>
