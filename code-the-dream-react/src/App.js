@@ -38,6 +38,42 @@ function Search() {
   );
 }
 
+// function expression format
+let List = function App() {
+  return (
+    <div>
+      <h1>Todo List</h1>
+      {/* invoking search by creating a 'search element' */}
+      <Search />
+      {/* invoking list componnent below */}
+      <List /> 
+    </div>
+  );
+}
+
+let List = () => {
+  return (
+    <div>
+      <h1>Todo List</h1>
+      {/* invoking search by creating a 'search element' */}
+      <Search />
+      {/* invoking list componnent below */}
+      <List /> 
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <h1>Todo List</h1>
+      {/* invoking search by creating a 'search element' */}
+      <Search />
+      {/* invoking list componnent below */}
+      <List /> 
+    </div>
+  );
+}
 
 function App() {
   return (
