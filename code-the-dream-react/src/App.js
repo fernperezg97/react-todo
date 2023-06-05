@@ -15,19 +15,38 @@ const todoList = [
   }
 ];
 
-function App() {
+function List() {
   return (
-    <div>
-      <h1>Todo List</h1>
-      <ul>
-        {todoList.map(function (item) {
+    <ul>
+      {todoList.map(function (item) {
           return (
           <li key={item.objectID}> {item.title}</li>
           )
         })
 
-        }
-      </ul>
+      }
+    </ul>
+  );
+}
+
+function Search() {
+  return (
+    <div>
+      <label htmlfor="search">Search: </label>
+      <input id="search" type="text" />
+    </div>
+  );
+}
+
+
+function App() {
+  return (
+    <div>
+      <h1>Todo List</h1>
+      {/* invoking search by creating a 'search element' */}
+      <Search />
+      {/* invoking list componnent below */}
+      <List /> 
     </div>
   );
 }
