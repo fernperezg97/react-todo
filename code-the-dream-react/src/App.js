@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { TodoList } from './TodoList.js';
+import { AddTodoForm } from './AddTodoForm.js';
 
 function App() {
   return (
     <div>
-      <h1>React</h1>
+      <h1>Lesson 1.2: Todo List & Add Todo Form</h1>
+      <AddTodoForm />
       <TodoList />
     </div>
   );
