@@ -1,10 +1,8 @@
 import React from 'react';
 
-function TodoListItem() {
+function TodoListItem(props) {
     return (
-        <ul>
-        {todoList.map(item => <li number={item.objectID}>{item.title}</li>)}
-    </ul>
+        <li>{props.propsTodoListChunk.title}</li>
     );
 }
 
