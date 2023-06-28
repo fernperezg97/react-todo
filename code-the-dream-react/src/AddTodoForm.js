@@ -6,7 +6,7 @@ function AddTodoForm(props) {
         let todoTitle = event.target.title.value;
         console.log(todoTitle);
         document.getElementById("formValue").reset();
-        props.onAddTodo(todoTitle);   /* I am not 100% sure if this is where I was expected to add the onAddTodo callback prop within the handleAddTodo function */                 
+        props.onAddTodo(todoTitle);                 
     };
     return (
         <form id="formValue" onSubmit={handleAddTodo}>

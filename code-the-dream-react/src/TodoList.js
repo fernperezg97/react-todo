@@ -19,8 +19,8 @@ const todoList = [
 function TodoList() {
     return (
       <ul>
-        {todoList.map((todoListChunk) => (
-          <TodoListItem key={todoListChunk.objectID} propsTodoListChunk={todoListChunk} />
+        {todoList.map((listItem) => (
+          <TodoListItem key={listItem.objectID} listItem={listItem} />
         ))}
       </ul>
     );
