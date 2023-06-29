@@ -4,6 +4,7 @@ import { AddTodoForm } from './AddTodoForm.js';
 
 function App() {
   const [newTodo, setNewTodo] = React.useState('');
+  const [todoList, setTodoList] = React.useState([]);
   return (
     <div>
       <h1>React Assignment: Todo List</h1>
@@ -11,7 +12,7 @@ function App() {
         <p>
           New todo item: <strong>{newTodo}</strong> 
         </p>
-      <TodoList />
+      <TodoList todoList={todoList}/>
     </div>
   );
 }

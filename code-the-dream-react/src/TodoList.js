@@ -16,10 +16,10 @@ const todoList = [
     }
   ];
 
-function TodoList() {
+function TodoList(props) {
     return (
       <ul>
-        {todoList.map((listItem) => (
+        {props.todoList.map((listItem) => (
           <TodoListItem key={listItem.objectID} listItem={listItem} />
         ))}
       </ul>
