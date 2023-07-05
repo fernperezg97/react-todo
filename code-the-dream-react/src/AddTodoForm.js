@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AddTodoForm(props) {
+function AddTodoForm({ onAddTodo }) {
     const [todoTitle, setTodoTitle] = React.useState(''); // setTodoTitle in this case is sometimes called the function updater/callback handler
 
     function handleTitleChange(event) {
@@ -10,11 +10,11 @@ function AddTodoForm(props) {
 
     function handleAddTodo(event) {
         event.preventDefault();
-        let todoItem = [{
+        let todoItem = {
             title: todoTitle,
             id: Date.now(),
-            }]
-        props.onAddTodo(todoItem);
+            }
+        onAddTodo(todoItem);
         setTodoTitle(''); // Note to self: can also use event.target.reset() instead of document.getElementById()                 
     };
     
@@ -22,7 +22,6 @@ function AddTodoForm(props) {
         <form id="formValue" onSubmit={handleAddTodo}>
             <label>Title </label>
             <input id="todoTitle" type="text" name="title" value={todoTitle} onChange={handleTitleChange}></input>
-            <label htmlFor="todoTitle"></label>
             <input type="submit" value="Add"/>
         </form>
     );

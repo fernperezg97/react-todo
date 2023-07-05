@@ -7,8 +7,8 @@ function App() {
 
   function addTodo(newTodo) {
     console.log(todoList);
-    console.log(newTodo);
-    setTodoList([...todoList, ...newTodo]);
+    console.log(newTodo)
+    setTodoList([...todoList, newTodo]);
   }
   
   return (
