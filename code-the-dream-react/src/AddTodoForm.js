@@ -1,18 +1,27 @@
 import React from 'react';
 
-function AddTodoForm(props) {
+function AddTodoForm({ onAddTodo }) {
+    const [todoTitle, setTodoTitle] = React.useState(''); // setTodoTitle in this case is sometimes called the function updater/callback handler
+
+    function handleTitleChange(event) {
+        let newTodoTitle = event.target.value;
+        setTodoTitle(newTodoTitle);
+    };
+
     function handleAddTodo(event) {
         event.preventDefault();
-        let todoTitle = event.target.title.value;
-        console.log(todoTitle);
-        document.getElementById("formValue").reset();
-        props.onAddTodo(todoTitle);   /* I am not 100% sure if this is where I was expected to add the onAddTodo callback prop within the handleAddTodo function */                 
+        let todoItem = {
+            title: todoTitle,
+            id: Date.now(),
+            }
+        onAddTodo(todoItem);
+        setTodoTitle(''); // Note to self: can also use event.target.reset() instead of document.getElementById()                 
     };
+    
     return (
         <form id="formValue" onSubmit={handleAddTodo}>
             <label>Title </label>
-            <input id="todoTitle" type="text" name="title"></input>
-            <label htmlFor="todoTitle"></label>
+            <input id="todoTitle" type="text" name="title" value={todoTitle} onChange={handleTitleChange}></input>
             <input type="submit" value="Add"/>
         </form>
     );

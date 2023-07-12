@@ -1,26 +1,12 @@
 import React from 'react';
 import { TodoListItem } from './TodoListItem';
 
-const todoList = [
-    {
-      objectID: '1',
-      title: 'Complete Assignment',
-    },
-    {
-      objectID: '2',
-      title: 'Take Dog on Walk',
-    },
-    {
-      objectID: '3',
-      title: 'Wash Dishes',
-    }
-  ];
 
-function TodoList() {
+function TodoList({ todoList }) {
     return (
       <ul>
-        {todoList.map((todoListChunk) => (
-          <TodoListItem key={todoListChunk.objectID} propsTodoListChunk={todoListChunk} />
+        {todoList.map((listItem) => (
+          <TodoListItem key={listItem.id} listItem={listItem} />
         ))}
       </ul>
     );
