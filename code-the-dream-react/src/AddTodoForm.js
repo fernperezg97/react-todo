@@ -1,4 +1,5 @@
 import React from 'react';
+import { InputWithLabel } from './InputWithLabel.js';
 
 function AddTodoForm({ onAddTodo }) {
     const [todoTitle, setTodoTitle] = React.useState(''); // setTodoTitle in this case is sometimes called the function updater/callback handler
@@ -20,9 +21,7 @@ function AddTodoForm({ onAddTodo }) {
     
     return (
         <form id="formValue" onSubmit={handleAddTodo}>
-            <label>Title </label>
-            <input id="todoTitle" type="text" name="title" value={todoTitle} onChange={handleTitleChange}></input>
-            <input type="submit" value="Add"/>
+            <InputWithLabel label="Title" todoTitle={todoTitle} handleTitleChange={handleTitleChange}/>
         </form>
     );
 }
