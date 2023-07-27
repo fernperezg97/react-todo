@@ -8,10 +8,33 @@ function App() {
     const savedTodoList = localStorage.getItem('savedTodoList');
     return savedTodoList ? JSON.parse(savedTodoList) : [];
   });
-  
-  useEffect(() => {
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  useEffect (() => {
+    // Check if the todoList is empty (data not fetched yet)
+    if (isLoading === false) {
+      const fetchData = new Promise((resolve, reject) => {
+        // Simulate 2-second delay to resolve the Promise
+        setTimeout(() => {
+          resolve({data: { todoList: [] } });
+        }, 2000);
+      });
+
+      // Use .then() to update the todoList state with the resolved data
+      fetchData.then((result) => {
+        const updatedTodoList = result.data.todoList;
+        setTodoList(updatedTodoList);
+        setIsLoading(false); // Set isLoading to false after data is fetched
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        setIsLoading(false);
+      });
+  } else {
+    // If todoList is not empty, save data to localStorage
     localStorage.setItem('savedTodoList', JSON.stringify(todoList));
-  }, [todoList]);
+    }
+  }, [todoList, isLoading]);
   
   function addTodo(newTodo) {
     setTodoList([...todoList, newTodo]);
