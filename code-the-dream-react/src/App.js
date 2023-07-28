@@ -21,12 +21,17 @@ function App() {
   function addTodo(newTodo) {
     setTodoList([...todoList, newTodo]);
   }
+
+  function removeTodo(id) {
+    const updatedTodoList = todoList.filter((item) => item.id !== id);
+    setTodoList(updatedTodoList);
+  };
   
   return (
       <>
         <h1>React Assignment: Todo List</h1>
         <AddTodoForm onAddTodo={addTodo} /> {/* When initializing a component, if your component (function) takes in props, that is your key to know that your component--AddTodoForm in this case--takes something in and you need to add props after calling and creating an instance of the component. */}
-        <TodoList todoList={todoList} />
+        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
       </>
   );
 }

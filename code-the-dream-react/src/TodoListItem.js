@@ -1,8 +1,11 @@
 import React from 'react';
 
-function TodoListItem({listItem}) {
+function TodoListItem({ listItem, onRemoveTodo }) {
     return (
-        <li>{listItem.title}</li>
+        <li>
+            <span style={{ marginRight: '8px' }}>{listItem.title}</span>
+            <button onClick={() => onRemoveTodo(listItem.id)}>Remove</button>
+        </li>
     );
 }
 
