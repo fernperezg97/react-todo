@@ -5,28 +5,43 @@ import { AddTodoForm } from './AddTodoForm.js';
 
 function App() {
   const [todoList, setTodoList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true)
+
+  async function fetchData() {    // What's the difference (if any) between initiating an async function the way I did it vs const fetchData = async() =>
+    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
+    const options = {
+     method: 'GET',
+     headers: {
+       Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
+      }
+    };
+    console.log(options.headers.Authorization, url)
+    try {
+      const response = await fetch(url, options);
+      console.log(response);
+      if (!response.ok) {
+        const message = `Error: ${response.status}`;
+        throw new Error(message);
+      }
+      const data = await response.json();
+      // console.log(data);
+      const todos = data.records.map((todo) => {
+        const newApiTodo = {
+          id: todo.id,
+          title: todo.fields.title
+        }
+        // console.log(todos);
+        return newApiTodo
+      });
+        setTodoList(todos);
+        setIsLoading(false);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   useEffect(() => {
-    // Fetch data only once when the component mounts
-    const fetchData = new Promise((resolve, reject) => {
-      // Simulate 2-second delay to resolve the Promise
-      setTimeout(() => {
-        resolve({ data: { todoList: [] } });
-      }, 2000);
-    });
-
-    // Use .then() to update the todoList state with the resolved data
-    fetchData
-      .then((result) => {
-        const updatedTodoList = result.data.todoList;
-        setTodoList(updatedTodoList);
-        setIsLoading(false); // Set isLoading to false after data is fetched
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        setIsLoading(false);
-      });
+    fetchData();
   }, []); // Empty dependency array to fetch data only once
 
   useEffect(() => {

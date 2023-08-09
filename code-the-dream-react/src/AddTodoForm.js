@@ -12,8 +12,8 @@ function AddTodoForm({ onAddTodo }) {
     function handleAddTodo(event) {
         event.preventDefault();
         let todoItem = {
-            title: todoTitle,
-            id: Date.now(),
+                id: Date.now(),
+                title: todoTitle,
             }
         onAddTodo(todoItem);
         setTodoTitle(''); // Note to self: can also use event.target.reset() instead of document.getElementById()                 
