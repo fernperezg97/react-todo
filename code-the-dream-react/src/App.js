@@ -2,6 +2,12 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { TodoList } from './TodoList.js';
 import { AddTodoForm } from './AddTodoForm.js';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import React from "react";
 
 function App() {
   const [todoList, setTodoList] = useState([]);
@@ -61,16 +67,25 @@ function App() {
   };
 
   return (
-    <>
-      <h1>React Assignment: Todo List</h1>
-      <AddTodoForm onAddTodo={addTodo} />
-      {/* Render 'Loading...' message only when isLoading is true or todoList is empty, otherwise render TodoList component */}
-      {isLoading || todoList.length === 0 ? (
-        <p>Loading...</p>
-      ) : (
-        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-      )}
-    </>
+    <BrowserRouter>
+      <div>
+        <h1>React Assignment: Todo List</h1>
+        <AddTodoForm onAddTodo={addTodo} />
+        {/* Render 'Loading...' message only when isLoading is true or todoList is empty, otherwise render TodoList component */}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              isLoading || todoList.length === 0 ? (
+                <p>Loading...</p>
+              ) : (
+                <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+              )
+            }
+          />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
