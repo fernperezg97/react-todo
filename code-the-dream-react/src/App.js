@@ -24,7 +24,7 @@ function App() {
     console.log(options.headers.Authorization, url)
     try {
       const response = await fetch(url, options);
-      console.log(response);
+      // console.log(response);
       if (!response.ok) {
         const message = `Error: ${response.status}`;
         throw new Error(message);
@@ -82,6 +82,10 @@ function App() {
                 <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
               )
             }
+          />
+          <Route
+            path="/new"
+            element={<h1>New Todo List</h1>}
           />
         </Routes>
       </div>
